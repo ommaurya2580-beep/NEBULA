@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { useExperienceStore } from '@/store/useExperienceStore';
 
 /**
  * CustomCursor
@@ -12,7 +11,6 @@ import { useExperienceStore } from '@/store/useExperienceStore';
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
-  const { currentState } = useExperienceStore();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
