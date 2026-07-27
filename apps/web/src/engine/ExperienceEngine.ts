@@ -3,6 +3,7 @@ import { Logger } from '../core/Logger';
 import { eventBus } from './EventBus';
 import { commandBus } from './CommandBus';
 import { queryBus } from './QueryBus';
+import { useExperienceStore } from '../store/useExperienceStore';
 
 export type ExperienceState = 
   | 'BOOT' | 'LOADING' | 'INTRO' | 'BRAND' | 'WORLD' 
@@ -61,6 +62,9 @@ export class ExperienceEngine implements ILifecycle {
 
     this.stateHistory.push(this.activeState);
     this.activeState = newState;
+
+    // Sync to React Zustand Store
+    useExperienceStore.getState().setCurrentState(newState);
 
     // Apply Presets via CommandBus
     await commandBus.execute('APPLY_CAMERA_PRESET', nextDef.preset.camera);

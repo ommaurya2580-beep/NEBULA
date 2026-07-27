@@ -4,6 +4,7 @@ import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect } from 'react';
 import { rendererManager } from '../../engine/RendererManager';
 import { usePerformanceStore } from '../../store/usePerformanceStore';
+import { WorldEngine } from './world/WorldEngine';
 // import { useUIStore } from '../../store/useUIStore';
 // import { Perf } from 'r3f-perf';
 
@@ -37,6 +38,7 @@ export const NebulaCanvas = ({ children }: { children?: React.ReactNode }) => {
         camera={{ position: [0, 0, 5], fov: 45 }}
       >
         <RendererConfig />
+        <WorldEngine />
         {/* {isDebug && <Perf position="top-left" />} */}
         {children}
       </Canvas>
