@@ -10,8 +10,7 @@
     "dev": "npm run dev -w @nebula/web",
     "build": "npm run build -w @nebula/web",
     "start": "npm run start -w @nebula/web",
-    "lint": "npm run lint --workspaces --if-present",
-    "prepare": "husky"
+    "lint": "npm run lint --workspaces --if-present"
   },
   "devDependencies": {
     "husky": "^9.1.7",
