@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { NebulaCanvas } from "../components/canvas/NebulaCanvas";
+import dynamic from "next/dynamic";
+const NebulaCanvas = dynamic(() => import("../components/canvas/NebulaCanvas").then(mod => mod.NebulaCanvas), { ssr: false });
 import { DebugPanel } from "../ui/DebugPanel";
 
 const geistSans = Geist({
