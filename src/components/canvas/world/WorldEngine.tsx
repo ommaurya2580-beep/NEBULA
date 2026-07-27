@@ -11,10 +11,8 @@ import { HeroLayer } from './layers/HeroLayer';
  * It listens to the ExperienceEngine (via Zustand) and coordinates layers.
  */
 export function WorldEngine() {
-  const GroupTag = 'group' as any;
-
   return (
-    <GroupTag name="world-engine">
+    <group name="world-engine">
       {/* 1. Camera Control */}
       <CameraRig />
 
@@ -27,6 +25,6 @@ export function WorldEngine() {
       {/* 4. Product Universe (To be implemented) */}
       
       {/* 5. Post Processing (To be implemented) */}
-    </GroupTag>
+    </group>
   );
 }

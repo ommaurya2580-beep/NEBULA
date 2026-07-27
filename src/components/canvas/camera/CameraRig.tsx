@@ -80,6 +80,5 @@ export function CameraRig() {
     }
   });
 
-  const GroupTag = 'group' as any;
-  return <GroupTag ref={groupRef} name="camera-rig-parallax-group" />;
+  return <group ref={groupRef} name="camera-rig-parallax-group" />;
 }

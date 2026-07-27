@@ -16,25 +16,20 @@ export function EnvironmentLayer() {
   const ambientIntensity = isBooting ? 0 : 0.2;
   const keyLightIntensity = isBooting ? 0 : 2.5;
 
-  const GroupTag = 'group' as any;
-  const FogTag = 'fog' as any;
-  const AmbientLightTag = 'ambientLight' as any;
-  const DirectionalLightTag = 'directionalLight' as any;
-
   return (
-    <GroupTag name="environment-layer">
+    <group name="environment-layer">
       {/* 1. Fog for atmospheric depth */}
-      <FogTag attach="fog" args={['#050505', 5, 20]} />
+      <fog attach="fog" args={['#050505', 5, 20]} />
 
       {/* 2. Global Illumination & Reflections */}
       {/* city preset provides a good modern/studio look */}
       {!isBooting && <Environment preset="city" environmentIntensity={0.5} />}
 
       {/* 3. Base Ambient */}
-      <AmbientLightTag intensity={ambientIntensity} />
+      <ambientLight intensity={ambientIntensity} />
 
       {/* 4. Cinematic Key Light (Directional) */}
-      <DirectionalLightTag
+      <directionalLight
         position={[5, 5, 5]}
         intensity={keyLightIntensity}
         color="#ffffff"
@@ -48,7 +43,7 @@ export function EnvironmentLayer() {
       />
 
       {/* 5. Rim Light (Accentuation for models) */}
-      <DirectionalLightTag 
+      <directionalLight 
         position={[-5, 3, -5]} 
         intensity={keyLightIntensity * 0.5} 
         color="#a0c0ff" 
@@ -66,6 +61,6 @@ export function EnvironmentLayer() {
           color="#ffffff"
         />
       )}
-    </GroupTag>
+    </group>
   );
 }
