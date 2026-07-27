@@ -1,6 +1,7 @@
 'use client';
 
 
+import { useState } from 'react';
 import { useExperienceStore } from '@/store/useExperienceStore';
 import { Typography } from './Typography';
 import { Button } from './Button';
@@ -14,6 +15,7 @@ import { experienceEngine } from '@/engine/ExperienceEngine';
  */
 export function OverlayManager() {
   const { currentState } = useExperienceStore();
+  const [cartCount, setCartCount] = useState(0);
 
   const handleStartExperience = () => {
     // Command the engine to move from BOOT/INTRO to WORLD
@@ -32,11 +34,13 @@ export function OverlayManager() {
         <Typography variant="label" className="tracking-[0.2em]">NEBULA</Typography>
         
         {/* Only show menu in later states */}
-        {['WORLD', 'DETAIL', 'CUSTOMIZATION', 'CHECKOUT'].includes(currentState) && (
+        {['WORLD', 'DETAIL', 'CUSTOMIZATION', 'CART', 'CHECKOUT'].includes(currentState) && (
           <nav className="pointer-events-auto flex gap-4">
-            <Button variant="ghost">Collections</Button>
+            <Button variant="ghost" onClick={() => experienceEngine.transitionTo('WORLD')}>Collections</Button>
             <Button variant="ghost">About</Button>
-            <Button variant="secondary">Cart (0)</Button>
+            <Button variant="secondary" onClick={() => experienceEngine.transitionTo('CART')}>
+              Cart ({cartCount})
+            </Button>
           </nav>
         )}
       </header>
@@ -90,9 +94,99 @@ export function OverlayManager() {
 
               <div className="flex gap-4">
                 <Button className="flex-1" onClick={() => experienceEngine.transitionTo('CUSTOMIZATION')}>Customize</Button>
-                <Button variant="secondary" className="flex-1">Add to Cart</Button>
+                <Button variant="secondary" className="flex-1" onClick={() => {
+                  setCartCount(prev => prev + 1);
+                  experienceEngine.transitionTo('CART');
+                }}>Add to Cart</Button>
               </div>
             </GlassPanel>
+          </div>
+        )}
+
+        {/* CART STATE */}
+        {currentState === 'CART' && (
+          <div className="absolute right-12 top-24 bottom-24 pointer-events-auto flex flex-col justify-center">
+            <GlassPanel className="p-8 w-96 max-h-full flex flex-col">
+              <Typography variant="h2" className="mb-6">Your Cart</Typography>
+              
+              {cartCount === 0 ? (
+                <div className="flex-1 flex items-center justify-center">
+                  <Typography variant="body" className="opacity-50">Your cart is empty.</Typography>
+                </div>
+              ) : (
+                <div className="flex-1 overflow-y-auto space-y-6">
+                  {Array.from({ length: cartCount }).map((_, i) => (
+                    <div key={i} className="flex justify-between items-center border-b border-white/10 pb-4">
+                      <div>
+                        <Typography variant="body" className="font-bold">Quantum Jacket</Typography>
+                        <Typography variant="caption" className="opacity-70">AERIS DROP 01</Typography>
+                      </div>
+                      <Typography variant="body">$450</Typography>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="pt-6 border-t border-white/10 mt-auto">
+                <div className="flex justify-between items-center mb-6">
+                  <Typography variant="h3">Total</Typography>
+                  <Typography variant="h3">${cartCount * 450}</Typography>
+                </div>
+                <Button 
+                  className="w-full" 
+                  disabled={cartCount === 0}
+                  onClick={() => experienceEngine.transitionTo('CHECKOUT')}
+                >
+                  Proceed to Checkout
+                </Button>
+              </div>
+            </GlassPanel>
+          </div>
+        )}
+
+        {/* CHECKOUT STATE */}
+        {currentState === 'CHECKOUT' && (
+          <div className="text-center pointer-events-auto w-full max-w-md mx-auto">
+            <GlassPanel className="p-8 text-left">
+              <Typography variant="h2" className="mb-8">Secure Checkout</Typography>
+              
+              <div className="space-y-4 mb-8">
+                <div>
+                  <Typography variant="label" className="block mb-2">Email Address</Typography>
+                  <input type="email" className="w-full bg-white/5 border border-white/10 rounded p-3 text-white focus:outline-none focus:border-accent" placeholder="you@example.com" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Typography variant="label" className="block mb-2">First Name</Typography>
+                    <input type="text" className="w-full bg-white/5 border border-white/10 rounded p-3 text-white focus:outline-none focus:border-accent" placeholder="John" />
+                  </div>
+                  <div>
+                    <Typography variant="label" className="block mb-2">Last Name</Typography>
+                    <input type="text" className="w-full bg-white/5 border border-white/10 rounded p-3 text-white focus:outline-none focus:border-accent" placeholder="Doe" />
+                  </div>
+                </div>
+              </div>
+
+              <Button className="w-full" onClick={() => {
+                setCartCount(0);
+                experienceEngine.transitionTo('OUTRO');
+              }}>
+                Complete Purchase
+              </Button>
+            </GlassPanel>
+          </div>
+        )}
+
+        {/* OUTRO STATE */}
+        {currentState === 'OUTRO' && (
+          <div className="text-center pointer-events-auto">
+            <Typography variant="display-xl" className="mb-6 text-accent">Order Confirmed</Typography>
+            <Typography variant="body-lg" className="mb-12">
+              Welcome to the future. Your Quantum Jacket is being prepared.
+            </Typography>
+            <Button onClick={() => experienceEngine.transitionTo('WORLD')} variant="secondary">
+              Return to Universe
+            </Button>
           </div>
         )}
 
