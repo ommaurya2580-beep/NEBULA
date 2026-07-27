@@ -1,3 +1,0 @@
-module.exports=[44213,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(98377);a.n(d("[project]/dynamic web/nebula/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},72287,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(98377);a.n(d("[project]/dynamic web/nebula/node_modules/next/dist/client/components/builtin/global-error.js"))},23871,a=>{"use strict";a.i(44213);var b=a.i(72287);a.n(b)},94184,a=>{a.n(a.i(23871))}];
-
-//# sourceMappingURL=13va_next_dist_client_components_builtin_global-error_1glez9y.js.map
