@@ -20,14 +20,15 @@ export function CameraRig() {
     // Cinematic camera positions mapped to Experience States
     const positions: Record<string, { pos: [number, number, number]; lookAt: [number, number, number]; fov: number }> = {
       BOOT: { pos: [0, 0, 15], lookAt: [0, 0, 0], fov: 35 },
-      ARRIVAL: { pos: [0, 0, 12], lookAt: [0, 0, 0], fov: 40 },
-      UNIVERSE_ACTIVATION: { pos: [0, 1, 8], lookAt: [0, 0.5, 0], fov: 45 },
-      BRAND_STORY: { pos: [2, 1, 6], lookAt: [0, 0, 0], fov: 45 },
-      COLLECTION_REVEAL: { pos: [0, 0, 7], lookAt: [0, 0, 0], fov: 40 },
-      HERO_PRODUCT: { pos: [0, 0, 4], lookAt: [0, 0, 0], fov: 35 },
-      EXPLORATION: { pos: [0, 0, 6], lookAt: [0, 0, 0], fov: 45 },
-      PRODUCT_DETAIL: { pos: [0, 0, 2], lookAt: [0, 0, 0], fov: 30 },
+      LOADING: { pos: [0, 0, 12], lookAt: [0, 0, 0], fov: 40 },
+      INTRO: { pos: [0, 1, 8], lookAt: [0, 0.5, 0], fov: 45 },
+      BRAND: { pos: [2, 1, 6], lookAt: [0, 0, 0], fov: 45 },
+      WORLD: { pos: [0, 0, 6], lookAt: [0, 0, 0], fov: 45 },
+      COLLECTION: { pos: [0, 0, 7], lookAt: [0, 0, 0], fov: 40 },
+      PRODUCT: { pos: [0, 0, 4], lookAt: [0, 0, 0], fov: 35 },
+      DETAIL: { pos: [0, 0, 2], lookAt: [0, 0, 0], fov: 30 },
       CUSTOMIZATION: { pos: [0, 0.5, 3], lookAt: [0, 0, 0], fov: 35 },
+      CART: { pos: [0, 0, 5], lookAt: [0, 0, 0], fov: 40 },
       CHECKOUT: { pos: [0, 0, 5], lookAt: [0, 0, 0], fov: 40 },
       OUTRO: { pos: [0, 0, 15], lookAt: [0, 0, 0], fov: 50 },
     };
