@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors */
+  --color-primary-black: #050505;
+  --color-secondary-charcoal: #121212;
+  --color-accent: #00ffcc; /* Electric Blue / Emerald vibe */
+  --color-surface-glass: rgba(255, 255, 255, 0.05);
+  --color-surface-glass-hover: rgba(255, 255, 255, 0.1);
+  --color-border-glass: rgba(255, 255, 255, 0.1);
+  
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a1a1aa;
+  
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-hero: 32px;
+  
+  /* Shadows */
+  --shadow-glow: 0 0 40px rgba(0, 255, 204, 0.2);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Base Styles */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-primary-black);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  overscroll-behavior: none;
+  cursor: none; /* We will use a custom cursor */
+}
+
+/* Disable generic text selection globally for app-like feel */
+::selection {
+  background: var(--color-accent);
+  color: #000;
+}
+
+/* 
+  Glass Utility Classes 
+*/
+@layer utilities {
+  .glass-panel {
+    background: var(--color-surface-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border-glass);
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .glass-panel-hover:hover {
+    background: var(--color-surface-glass-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
 }

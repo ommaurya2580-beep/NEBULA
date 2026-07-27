@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
-const NebulaCanvas = dynamic(() => import("../components/canvas/NebulaCanvas").then(mod => mod.NebulaCanvas), { ssr: false });
+import { CanvasWrapper } from "../components/canvas/CanvasWrapper";
 import { DebugPanel } from "../ui/DebugPanel";
+import { OverlayManager } from "../components/ui/OverlayManager";
+import { CustomCursor } from "../components/ui/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,16 +32,14 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-black text-white overflow-hidden">
-        <NebulaCanvas>
-          {/* WebGL Scene will mount here */}
-        </NebulaCanvas>
+        <CanvasWrapper />
         
         {/* UI Overlay */}
-        <div style={{ position: 'relative', zIndex: 1, pointerEvents: 'none', width: '100%', height: '100%' }}>
-          {children}
-        </div>
+        <OverlayManager />
         
+        <CustomCursor />
         <DebugPanel />
+        <div style={{ display: 'none' }}>{children}</div>
       </body>
     </html>
   );
