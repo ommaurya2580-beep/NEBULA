@@ -4,6 +4,6 @@ interface AudioStore {
   initialized: boolean;
 }
 
-export const useAudioStore = create<AudioStore>((set) => ({
+export const useAudioStore = create<AudioStore>(() => ({
   initialized: false,
 }));

@@ -4,6 +4,6 @@ interface AnimationStore {
   initialized: boolean;
 }
 
-export const useAnimationStore = create<AnimationStore>((set) => ({
+export const useAnimationStore = create<AnimationStore>(() => ({
   initialized: false,
 }));

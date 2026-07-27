@@ -9,7 +9,7 @@ export class QualityManager {
     // Mock GPU Detection
     Logger.info('[QualityManager] Detecting GPU capabilities...');
     this.tier = 'HIGH';
-    Logger.info("|[QualityManager] Device Tier set to: ${this.tier}"|);
+    Logger.info(`[QualityManager] Device Tier set to: ${this.tier}`);
   }
 
   public getTier(): DeviceTier {

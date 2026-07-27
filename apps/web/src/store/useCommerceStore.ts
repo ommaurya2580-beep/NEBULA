@@ -4,6 +4,6 @@ interface CommerceStore {
   initialized: boolean;
 }
 
-export const useCommerceStore = create<CommerceStore>((set) => ({
+export const useCommerceStore = create<CommerceStore>(() => ({
   initialized: false,
 }));

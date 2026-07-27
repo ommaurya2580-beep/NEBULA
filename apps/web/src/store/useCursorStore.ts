@@ -4,6 +4,6 @@ interface CursorStore {
   initialized: boolean;
 }
 
-export const useCursorStore = create<CursorStore>((set) => ({
+export const useCursorStore = create<CursorStore>(() => ({
   initialized: false,
 }));

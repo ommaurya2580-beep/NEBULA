@@ -4,14 +4,13 @@ import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect } from 'react';
 import { rendererManager } from '../../engine/RendererManager';
 import { usePerformanceStore } from '../../store/usePerformanceStore';
-import { useUIStore } from '../../store/useUIStore';
-import { Perf } from 'r3f-perf';
+// import { useUIStore } from '../../store/useUIStore';
+// import { Perf } from 'r3f-perf';
 
 const RendererConfig = () => {
   const { gl } = useThree();
   
   useEffect(() => {
-    // Register the active renderer instance to our engine manager
     rendererManager.setRenderer(gl);
     
     return () => {
@@ -22,9 +21,9 @@ const RendererConfig = () => {
   return null;
 };
 
-export const NebulaCanvas = ({ children }: { children: React.ReactNode }) => {
+export const NebulaCanvas = ({ children }: { children?: React.ReactNode }) => {
   const dpr = usePerformanceStore((state) => state.dpr);
-  const isDebug = useUIStore((state) => state.debugVisible);
+  // const isDebug = useUIStore((state) => state.debugVisible);
 
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1 }}>
@@ -38,7 +37,7 @@ export const NebulaCanvas = ({ children }: { children: React.ReactNode }) => {
         camera={{ position: [0, 0, 5], fov: 45 }}
       >
         <RendererConfig />
-        {isDebug && <Perf position="top-left" />}
+        {/* {isDebug && <Perf position="top-left" />} */}
         {children}
       </Canvas>
     </div>

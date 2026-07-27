@@ -4,6 +4,6 @@ interface UserStore {
   initialized: boolean;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
+export const useUserStore = create<UserStore>(() => ({
   initialized: false,
 }));

@@ -1,9 +1,15 @@
 import { create } from 'zustand';
 
 interface PerformanceStore {
-  initialized: boolean;
+  dpr: number;
+  fps: number;
+  setDpr: (dpr: number) => void;
+  setFps: (fps: number) => void;
 }
 
 export const usePerformanceStore = create<PerformanceStore>((set) => ({
-  initialized: false,
+  dpr: 1,
+  fps: 60,
+  setDpr: (dpr) => set({ dpr }),
+  setFps: (fps) => set({ fps })
 }));

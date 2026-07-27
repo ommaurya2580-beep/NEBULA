@@ -4,6 +4,6 @@ interface LoaderStore {
   initialized: boolean;
 }
 
-export const useLoaderStore = create<LoaderStore>((set) => ({
+export const useLoaderStore = create<LoaderStore>(() => ({
   initialized: false,
 }));

@@ -4,6 +4,6 @@ interface ParticlesStore {
   initialized: boolean;
 }
 
-export const useParticlesStore = create<ParticlesStore>((set) => ({
+export const useParticlesStore = create<ParticlesStore>(() => ({
   initialized: false,
 }));

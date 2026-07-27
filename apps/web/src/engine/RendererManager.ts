@@ -26,8 +26,7 @@ export class RendererManager implements ILifecycle {
 
     Logger.info('[RendererManager] Configuring physically correct WebGL settings...');
     
-    // Physically correct lighting
-    this.renderer.useLegacyLights = false;
+    // Physically correct lighting is now default in modern Three.js
     
     // Tone mapping (Cinematic look)
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;

@@ -4,6 +4,6 @@ interface DebugStore {
   initialized: boolean;
 }
 
-export const useDebugStore = create<DebugStore>((set) => ({
+export const useDebugStore = create<DebugStore>(() => ({
   initialized: false,
 }));

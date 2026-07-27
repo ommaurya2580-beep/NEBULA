@@ -4,6 +4,6 @@ interface CameraStore {
   initialized: boolean;
 }
 
-export const useCameraStore = create<CameraStore>((set) => ({
+export const useCameraStore = create<CameraStore>(() => ({
   initialized: false,
 }));

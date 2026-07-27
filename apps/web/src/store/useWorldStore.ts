@@ -4,6 +4,6 @@ interface WorldStore {
   initialized: boolean;
 }
 
-export const useWorldStore = create<WorldStore>((set) => ({
+export const useWorldStore = create<WorldStore>(() => ({
   initialized: false,
 }));

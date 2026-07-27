@@ -4,6 +4,6 @@ interface SearchStore {
   initialized: boolean;
 }
 
-export const useSearchStore = create<SearchStore>((set) => ({
+export const useSearchStore = create<SearchStore>(() => ({
   initialized: false,
 }));

@@ -4,6 +4,6 @@ interface RendererStore {
   initialized: boolean;
 }
 
-export const useRendererStore = create<RendererStore>((set) => ({
+export const useRendererStore = create<RendererStore>(() => ({
   initialized: false,
 }));

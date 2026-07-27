@@ -4,6 +4,6 @@ interface ThemeStore {
   initialized: boolean;
 }
 
-export const useThemeStore = create<ThemeStore>((set) => ({
+export const useThemeStore = create<ThemeStore>(() => ({
   initialized: false,
 }));

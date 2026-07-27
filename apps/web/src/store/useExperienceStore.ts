@@ -4,6 +4,6 @@ interface ExperienceStore {
   initialized: boolean;
 }
 
-export const useExperienceStore = create<ExperienceStore>((set) => ({
+export const useExperienceStore = create<ExperienceStore>(() => ({
   initialized: false,
 }));

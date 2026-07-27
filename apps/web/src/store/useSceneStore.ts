@@ -4,6 +4,6 @@ interface SceneStore {
   initialized: boolean;
 }
 
-export const useSceneStore = create<SceneStore>((set) => ({
+export const useSceneStore = create<SceneStore>(() => ({
   initialized: false,
 }));

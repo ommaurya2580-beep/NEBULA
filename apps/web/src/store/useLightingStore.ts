@@ -4,6 +4,6 @@ interface LightingStore {
   initialized: boolean;
 }
 
-export const useLightingStore = create<LightingStore>((set) => ({
+export const useLightingStore = create<LightingStore>(() => ({
   initialized: false,
 }));

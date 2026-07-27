@@ -4,6 +4,6 @@ interface WishlistStore {
   initialized: boolean;
 }
 
-export const useWishlistStore = create<WishlistStore>((set) => ({
+export const useWishlistStore = create<WishlistStore>(() => ({
   initialized: false,
 }));
