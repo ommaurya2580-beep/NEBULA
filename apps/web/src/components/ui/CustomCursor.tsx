@@ -72,19 +72,29 @@ export function CustomCursor() {
       gsap.to(dotRef.current, { opacity: 1, duration: 0.2 });
     };
 
+    // Event delegation for interactive elements (handles dynamically mounted components)
+    const onMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target?.closest('button, a, input, [role="button"]')) {
+        handleInteractiveEnter();
+      }
+    };
+
+    const onMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target?.closest('button, a, input, [role="button"]')) {
+        handleInteractiveLeave();
+      }
+    };
+
     // Event listeners
     window.addEventListener('mousemove', onMouseMove);
     document.body.addEventListener('mouseleave', onMouseLeave);
     document.body.addEventListener('mouseenter', onMouseEnter);
     window.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mouseup', onMouseUp);
-
-    // Setup hover effect for all clickable elements
-    const interactives = document.querySelectorAll('button, a, input, [role="button"]');
-    interactives.forEach((el) => {
-      el.addEventListener('mouseenter', handleInteractiveEnter);
-      el.addEventListener('mouseleave', handleInteractiveLeave);
-    });
+    document.addEventListener('mouseover', onMouseOver);
+    document.addEventListener('mouseout', onMouseOut);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
@@ -92,13 +102,10 @@ export function CustomCursor() {
       document.body.removeEventListener('mouseenter', onMouseEnter);
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
-
-      interactives.forEach((el) => {
-        el.removeEventListener('mouseenter', handleInteractiveEnter);
-        el.removeEventListener('mouseleave', handleInteractiveLeave);
-      });
+      document.removeEventListener('mouseover', onMouseOver);
+      document.removeEventListener('mouseout', onMouseOut);
     };
-  }, [isVisible, currentState]); // Re-bind if DOM changes based on state
+  }, [isVisible]); // Re-bind if DOM changes based on state
 
   return (
     <>

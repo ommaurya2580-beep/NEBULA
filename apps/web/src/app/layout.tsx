@@ -39,7 +39,7 @@ export default function RootLayout({
         
         <CustomCursor />
         <DebugPanel />
-        <div style={{ display: 'none' }}>{children}</div>
+        {children}
       </body>
     </html>
   );
